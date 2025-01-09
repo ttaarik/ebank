@@ -8,6 +8,7 @@ import {
 } from "../components/ui/card"
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
+import {Spinner} from "@nextui-org/spinner";
 
 export function LoginForm({
   className,
@@ -50,6 +51,7 @@ export function LoginForm({
                 </div>
                 <Button type="submit" className="w-full">
                   Login
+                  <Spinner color="default" labelColor="foreground" />
                 </Button>
               </div>
             </div>
