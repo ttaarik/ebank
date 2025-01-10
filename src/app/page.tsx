@@ -4,7 +4,7 @@ import { LoginForm } from 'src/components/login-form';
 import { toast } from "sonner";
 
 
-export default function Req() {
+export default function Home() {
   useEffect(() => {
     fetch('https://e-banking-api.onrender.com/WeatherForecast')
         .then((response) => response.json())
@@ -23,7 +23,7 @@ export default function Req() {
               <a href="#" className="flex items-center gap-2 self-center font-medium">
 
               </a>
-              <LoginForm/>
+                <LoginForm></LoginForm>
           </div>
       </div>
   );
