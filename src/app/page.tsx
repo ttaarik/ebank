@@ -23,7 +23,7 @@ export default function Home() {
               <a href="#" className="flex items-center gap-2 self-center font-medium">
 
               </a>
-                <LoginForm></LoginForm>
+                <LoginForm/>
           </div>
       </div>
   );

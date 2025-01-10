@@ -23,7 +23,7 @@ const schema = yup.object().shape({
 
 
 
-export function LoginForm() {
+export function LoginForm(){
   const {
     register,
     handleSubmit,
@@ -41,6 +41,7 @@ export function LoginForm() {
       body: JSON.stringify(data),
     });
 
+
     if (response.ok) {
       const result = await response.json();
       // JWT im Local Storage speichern (falls erforderlich)
@@ -48,7 +49,7 @@ export function LoginForm() {
     } else {
       console.error("Fehler bei der Anmeldung");
     }
-
+  }
     return (
         <div className="flex flex-col gap-6">
           <Card>
@@ -111,4 +112,5 @@ export function LoginForm() {
         </div>
     )
   }
-}
+
+
