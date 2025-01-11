@@ -1,3 +1,4 @@
+"use client"
 import { MainNav } from "src/components/main-nav"
 import { Search } from "src/components/search"
 import { UserNav } from "src/components/user-nav"
@@ -15,17 +16,65 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "src/components/ui/tabs"
 import { Download, Users, CreditCard, Activity } from 'lucide-react'
 import { MobileNav } from "src/components/mobile-nav"
+import Link from "next/link";
+import {useEffect} from "react";
+import {router} from "next/client";
+import {jwtDecode} from "jwt-decode";
 
 export default function DashboardPage() {
+    useEffect(() => {
+        const validateToken = async () => {
+            const token = localStorage.getItem("token");
+            if (token) {
+                const response = await fetch("/api/auth/validate", {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                if (!response.ok) {
+                    router.push("/login"); // Ungültiger Token, Weiterleitung
+                }
+            } else {
+                router.push("/login"); // Kein Token, Weiterleitung
+            }
+        };
+
+        validateToken();
+    }, []);
+
+    const token = localStorage.getItem("token");
+    if (token) {
+        const user = jwtDecode<{ customerId: number; firstname: string }>(token);
+        console.log(`Welcome, ${user.firstname}`);
+    }
+
     return (
         <div className="flex flex-col">
             <div className="border-b">
                 <div className="flex h-16 items-center px-4">
                     <MobileNav />
                     <MainNav className="mx-6 hidden md:flex" />
-                    <div className="ml-auto flex items-center space-x-4">
-                        <Search />
-                        <UserNav />
+                    <div className="ml-auto flex items-center space-x-6">
+                        <Link href="/dashboard" className="text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+                            Dashboard
+                        </Link>
+                        <Link href="/accounts" className="text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+                            Account
+                        </Link>
+                        <Link href="/cards" className="text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+                            Card
+                        </Link>
+                        <Link href="/subscription" className="text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+                            Subscription
+                        </Link>
+                        <Link href="/loan" className="text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+                            Loan
+                        </Link>
+                        <Link href="/transaction" className="text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+                            Transaction
+                        </Link>
+                        <UserNav/>
                     </div>
                 </div>
             </div>
@@ -118,10 +167,14 @@ export default function DashboardPage() {
                         <div className="grid gap-4 grid-cols-1 lg:grid-cols-7">
                             <Card className="col-span-4">
                                 <CardHeader>
-                                    <CardTitle>Overview</CardTitle>
+                                    <CardTitle>
+                                        <h1 className="scroll-m-20 text-5xl font-extrabold tracking-tight lg:text-5xl">
+                                            pLatin
+                                        </h1>
+                                    </CardTitle>
                                 </CardHeader>
                                 <CardContent className="pl-2">
-                                    <Overview />
+                                <Overview />
                                 </CardContent>
                             </Card>
                             <Card className="col-span-3">

@@ -7,33 +7,11 @@ export function MainNav({
                             ...props
                         }: React.HTMLAttributes<HTMLElement>) {
     return (
-        <nav
-            className={cn("flex items-center space-x-2 lg:space-x-6", className)}
-            {...props}
-        >
-            <Link
-                href="/"
-                className="text-xs sm:text-sm font-medium transition-colors hover:text-primary"
-            >
-                Overview
-            </Link>
-            <Link
-                href="/customers"
-                className="text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-            >
-                Customers
-            </Link>
-            <Link
-                href="/products"
-                className="text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-            >
-                Products
-            </Link>
-            <Link
-                href="/settings"
-                className="text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-            >
-                Settings
+        <nav className={cn("flex items-center space-x-2 lg:space-x-6", className)} {...props}>
+            <Link href="/" className="text-xs sm:text-sm font-medium transition-colors hover:text-primary">
+                <h1 className="scroll-m-20 text-xl font-extrabold tracking-tight lg:text-xl">
+                    pLatin
+                </h1>
             </Link>
         </nav>
     )

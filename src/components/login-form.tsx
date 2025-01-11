@@ -14,10 +14,11 @@ import {Spinner} from "@nextui-org/spinner";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useRouter } from 'next/navigation';
 
 const schema = yup.object().shape({
-  customernumber: yup.string().email("Ungültige Nummber").required("Nummer ist erforderlich"),
-  customerpin: yup.string().min(6, "Mindestens 6 Zeichen").required("Pin ist erforderlich"),
+  customernumber: yup.number().min(6, "Ungültige Nummber").required("Nummer ist erforderlich"),
+  customerpin: yup.number().min(6, "Mindestens 6 Zeichen").required("Pin ist erforderlich"),
 });
 
 
@@ -31,9 +32,10 @@ export function LoginForm(){
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  const onSubmit = async (data: { customernumber: string; customerpin: string }) => {
-    const response = await fetch("/api/auth/login", {
+  const router = useRouter();
+  const onSubmit = async (data: { customernumber: number; customerpin: number }) => {
+    console.log(data.customernumber);
+    const response = await fetch("/api/Auth2/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,15 +43,15 @@ export function LoginForm(){
       body: JSON.stringify(data),
     });
 
-
     if (response.ok) {
       const result = await response.json();
-      // JWT im Local Storage speichern (falls erforderlich)
       localStorage.setItem("token", result.token);
+      router.push("/dashboard"); // Weiterleitung nach Dashboard
     } else {
       console.error("Fehler bei der Anmeldung");
     }
-  }
+  };
+
     return (
         <div className="flex flex-col gap-6">
           <Card>
@@ -70,7 +72,7 @@ export function LoginForm(){
                       <Input
                           id="customernumber"
                           required placeholder="123456"
-                          type="text"
+                          type="number"
                           {...register("customernumber")}
                       />
                       {errors.customernumber && <p>{errors.customernumber.message}</p>}
@@ -92,7 +94,7 @@ export function LoginForm(){
                           type="password"
                           {...register("customerpin")}
                       />
-                      {errors.customerpin && <p>{errors.customerpin.message}</p>}
+                      {errors.customerpin && <p>only numbers!</p>}
 
                     </div>
                     <Button type="submit" className="w-full">
