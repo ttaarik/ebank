@@ -17,11 +17,9 @@ import * as yup from "yup";
 import { useRouter } from 'next/navigation';
 
 const schema = yup.object().shape({
-  customernumber: yup.number().min(6, "Ungültige Nummber").required("Nummer ist erforderlich"),
-  customerpin: yup.number().min(6, "Mindestens 6 Zeichen").required("Pin ist erforderlich"),
+  customernumber: yup.string().min(6, "Ungültige Nummber").required("Nummer ist erforderlich"),
+  customerpin: yup.string().min(4, "Mindestens 6 Zeichen").required("Pin ist erforderlich"),
 });
-
-
 
 
 export function LoginForm(){
@@ -33,12 +31,13 @@ export function LoginForm(){
     resolver: yupResolver(schema),
   });
   const router = useRouter();
-  const onSubmit = async (data: { customernumber: number; customerpin: number }) => {
+  const onSubmit = async (data: { customernumber: string; customerpin: string }) => {
     console.log(data.customernumber);
-    const response = await fetch("/api/Auth2/login", {
+    const response = await fetch("https://localhost:7119/api/Auth2/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        'Access-Control-Allow-Origin':'*'
       },
       body: JSON.stringify(data),
     });

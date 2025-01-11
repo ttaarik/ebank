@@ -10,7 +10,7 @@ export function RecentSales() {
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-0">
                 <div className="flex items-center">
                     <Avatar className="h-8 w-8 sm:h-9 sm:w-9">
-                        <AvatarImage src="/avatars/01.png" alt="Avatar" />
+                        <AvatarImage alt="Avatar" />
                         <AvatarFallback>OM</AvatarFallback>
                     </Avatar>
                     <div className="ml-4 space-y-1">
@@ -25,7 +25,7 @@ export function RecentSales() {
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-0">
                 <div className="flex items-center">
                     <Avatar className="h-8 w-8 sm:h-9 sm:w-9">
-                        <AvatarImage src="/avatars/02.png" alt="Avatar" />
+                        <AvatarImage alt="Avatar" />
                         <AvatarFallback>JL</AvatarFallback>
                     </Avatar>
                     <div className="ml-4 space-y-1">
@@ -38,7 +38,7 @@ export function RecentSales() {
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-0">
                 <div className="flex items-center">
                     <Avatar className="h-8 w-8 sm:h-9 sm:w-9">
-                        <AvatarImage src="/avatars/03.png" alt="Avatar" />
+                        <AvatarImage alt="Avatar" />
                         <AvatarFallback>IN</AvatarFallback>
                     </Avatar>
                     <div className="ml-4 space-y-1">
@@ -53,7 +53,7 @@ export function RecentSales() {
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-0">
                 <div className="flex items-center">
                     <Avatar className="h-8 w-8 sm:h-9 sm:w-9">
-                        <AvatarImage src="/avatars/04.png" alt="Avatar" />
+                        <AvatarImage alt="Avatar" />
                         <AvatarFallback>WK</AvatarFallback>
                     </Avatar>
                     <div className="ml-4 space-y-1">
