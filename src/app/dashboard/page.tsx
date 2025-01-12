@@ -119,7 +119,7 @@ export default function DashboardPage() {
                             Transaction
                         </Link>
                         <UserNav />
-                        <Button onClick={logout}>Logout</Button>
+                        {/*<Button onClick={logout}>Logout</Button>*/}
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@ export default function DashboardPage() {
                         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                             <Card>
                                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                    <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+                                    <CardTitle className="text-sm font-medium">Balance</CardTitle>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24"
@@ -166,7 +166,7 @@ export default function DashboardPage() {
                             </Card>
                             <Card>
                                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                    <CardTitle className="text-sm font-medium">Sales</CardTitle>
+                                    <CardTitle className="text-sm font-medium">Sparbuch</CardTitle>
                                     <CreditCard className="h-4 w-4 text-muted-foreground" />
                                 </CardHeader>
                                 <CardContent>
@@ -176,7 +176,7 @@ export default function DashboardPage() {
                             </Card>
                             <Card>
                                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                    <CardTitle className="text-sm font-medium">Active Now</CardTitle>
+                                    <CardTitle className="text-sm font-medium">Debit Card</CardTitle>
                                     <Activity className="h-4 w-4 text-muted-foreground" />
                                 </CardHeader>
                                 <CardContent>
