@@ -9,8 +9,9 @@ export default function Home() {
           <div className="flex w-full max-w-sm flex-col gap-6">
               <a href="#" className="flex items-center gap-2 self-center font-medium">
               </a>
-                <LoginForm/>
+              <LoginForm/>
           </div>
+          <script src="path/to/chartjs/dist/chart.umd.js"></script>
       </div>
   );
 }

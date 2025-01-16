@@ -19,6 +19,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {jwtDecode} from "jwt-decode";
+import LineChart from "src/components/LineChart";
+import DashboardLineChart from "src/components/LineChart";
 
 export default function DashboardPage() {
     const router = useRouter();
@@ -49,7 +51,6 @@ export default function DashboardPage() {
         if (isValid && token) {
             const decodedUser = jwtDecode<{ customerId: number;}>(token);
             setUser(decodedUser);
-
 
             async function getData() {
                 const url = `https://localhost:7119/api/Users/${decodedUser.customerId}`;
@@ -125,12 +126,6 @@ export default function DashboardPage() {
             </div>
             <div className="flex-1 space-y-4 p-4 sm:p-8 pt-6">
                 <Tabs defaultValue="overview" className="space-y-4">
-                    <TabsList>
-                        <TabsTrigger value="overview">Overview</TabsTrigger>
-                        <TabsTrigger value="analytics">Analytics</TabsTrigger>
-                        <TabsTrigger value="reports">Reports</TabsTrigger>
-                        <TabsTrigger value="notifications">Notifications</TabsTrigger>
-                    </TabsList>
                     <TabsContent value="overview" className="space-y-4">
                         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                             <Card>
@@ -185,31 +180,11 @@ export default function DashboardPage() {
                                 </CardContent>
                             </Card>
                         </div>
-                        <div className="grid gap-4 grid-cols-1 lg:grid-cols-7">
-                            <Card className="col-span-4">
-                                <CardHeader>
-                                    <CardTitle>
-                                        <h1 className="scroll-m-20 text-5xl font-extrabold tracking-tight lg:text-5xl">
-                                            pLatin
-                                        </h1>
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent className="pl-2">
-                                    <Overview />
-                                </CardContent>
-                            </Card>
-                            <Card className="col-span-3">
-                                <CardHeader>
-                                    <CardTitle>Recent Sales</CardTitle>
-                                    <CardDescription>You made 265 sales this month.</CardDescription>
-                                </CardHeader>
-                                <CardContent>
-                                    <RecentSales />
-                                </CardContent>
-                            </Card>
-                        </div>
                     </TabsContent>
                 </Tabs>
+                <div className="grid gap-4 h- grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
+                    <DashboardLineChart/>
+                </div>
             </div>
         </div>
     );
