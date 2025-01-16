@@ -77,7 +77,7 @@ export default function DashboardLineChart() {
                                 fill: "#00c714",
                             }}
                             activeDot={{
-                                r: 6,
+                                r: 8,
                             }}
                         >
                             <LabelList

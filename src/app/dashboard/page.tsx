@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 import {jwtDecode} from "jwt-decode";
 import LineChart from "src/components/LineChart";
 import DashboardLineChart from "src/components/LineChart";
+import { Expanses } from "@/src/components/expanses";
 
 export default function DashboardPage() {
     const router = useRouter();
@@ -182,8 +183,9 @@ export default function DashboardPage() {
                         </div>
                     </TabsContent>
                 </Tabs>
-                <div className="grid gap-4 h- grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
-                    <DashboardLineChart/>
+                <div className="grid grid-cols-3 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="col-span-2"><DashboardLineChart/></div>
+                    <div><Expanses/></div>
                 </div>
             </div>
         </div>
