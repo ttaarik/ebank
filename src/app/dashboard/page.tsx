@@ -77,7 +77,7 @@ export default function DashboardPage() {
     // }
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col min-h-screen">
             <div className="border-b">
                 <div className="flex h-16 items-center px-4">
                     <MobileNav />
@@ -129,7 +129,7 @@ export default function DashboardPage() {
                     <TabsContent value="overview" className="space-y-4">
                         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                             <Card>
-                                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                                <CardHeader className="flex flex-row items-center justify-between space-y-0">
                                     <CardTitle className="text-sm font-medium">Balance</CardTitle>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -182,11 +182,11 @@ export default function DashboardPage() {
                         </div>
                     </TabsContent>
                 </Tabs>
-                <div className="grid grid-cols-3 gap-4 sm:grid-cols-1 lg:grid-cols-3">
-                    <div className="col-span-2 w-full">
+                <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-3">
+                    <div className="col-span-2">
                         <DashboardLineChart />
                     </div>
-                    <div className="h-full w-full">
+                    <div>
                         <Expanses />
                     </div>
                 </div>
