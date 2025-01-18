@@ -18,14 +18,13 @@ import { MobileNav } from "src/components/mobile-nav";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import {jwtDecode} from "jwt-decode";
-import LineChart from "src/components/LineChart";
+import { jwtDecode } from "jwt-decode";
 import DashboardLineChart from "src/components/LineChart";
-import { Expanses } from "@/src/components/expanses";
+import Expanses from "src/components/expanses";
 
 export default function DashboardPage() {
     const router = useRouter();
-    const [user, setUser] = useState<{ customerId: number} | null>(null);
+    const [user, setUser] = useState<{ customerId: number } | null>(null);
 
     const validateToken = () => {
         const token = localStorage.getItem("token");
@@ -50,7 +49,7 @@ export default function DashboardPage() {
         const isValid = validateToken();
 
         if (isValid && token) {
-            const decodedUser = jwtDecode<{ customerId: number;}>(token);
+            const decodedUser = jwtDecode<{ customerId: number; }>(token);
             setUser(decodedUser);
 
             async function getData() {
@@ -69,13 +68,13 @@ export default function DashboardPage() {
 
         } else {
             localStorage.removeItem("token");
-            router.push("/");
+            // router.push("/");
         }
     }, [router]);
 
-    if (!user) {
-        return <div className="flex items-center justify-center h-screen">Loading...</div>;
-    }
+    // if (!user) {
+    //     return <div className="flex items-center justify-center h-screen">Loading...</div>;
+    // }
 
     return (
         <div className="flex flex-col">
@@ -183,9 +182,13 @@ export default function DashboardPage() {
                         </div>
                     </TabsContent>
                 </Tabs>
-                <div className="grid grid-cols-3 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    <div className="col-span-2"><DashboardLineChart/></div>
-                    <div><Expanses/></div>
+                <div className="grid grid-cols-3 gap-4 sm:grid-cols-1 lg:grid-cols-3">
+                    <div className="col-span-2 w-full">
+                        <DashboardLineChart />
+                    </div>
+                    <div className="h-full w-full">
+                        <Expanses />
+                    </div>
                 </div>
             </div>
         </div>
