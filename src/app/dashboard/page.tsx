@@ -22,6 +22,41 @@ import { jwtDecode } from "jwt-decode";
 import DashboardLineChart from "src/components/LineChart";
 import Expanses from "src/components/expanses";
 
+
+
+
+
+import { Line } from "react-chartjs-2"
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Filler,
+    Legend,
+} from "chart.js"
+import { Avatar } from "src/components/ui/avatar"
+import { Progress } from "src/components/ui/progress"
+import { MoreHorizontal, Plus } from 'lucide-react'
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Filler,
+    Legend
+)
+
+
+
+
+
 export default function DashboardPage() {
     const router = useRouter();
     const [user, setUser] = useState<{ customerId: number } | null>(null);
@@ -75,6 +110,44 @@ export default function DashboardPage() {
     // if (!user) {
     //     return <div className="flex items-center justify-center h-screen">Loading...</div>;
     // }
+
+    const recentActivities = [
+        {
+            name: "Julie Monet",
+            amount: "$50.00",
+            type: "Money Transfer",
+            time: "10:45 PM",
+            icon: "/placeholder.svg?height=32&width=32",
+        },
+        {
+            name: "McDonald's",
+            amount: "$12.50",
+            type: "Card Payment",
+            time: "8:30 PM",
+            icon: "/placeholder.svg?height=32&width=32",
+        },
+        {
+            name: "Starbucks",
+            amount: "$4.75",
+            type: "Card Payment",
+            time: "3:15 PM",
+            icon: "/placeholder.svg?height=32&width=32",
+        },
+        {
+            name: "Starbucks",
+            amount: "$4.75",
+            type: "Card Payment",
+            time: "3:15 PM",
+            icon: "/placeholder.svg?height=32&width=32",
+        },
+        {
+            name: "Starbucks",
+            amount: "$4.75",
+            type: "Card Payment",
+            time: "3:15 PM",
+            icon: "/placeholder.svg?height=32&width=32",
+        },
+    ]
 
     return (
         <div className="flex flex-col min-h-screen">
@@ -182,13 +255,41 @@ export default function DashboardPage() {
                         </div>
                     </TabsContent>
                 </Tabs>
-                <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-3">
-                    <div className="col-span-2">
+                <div className="grid grid-cols-3 gap-4 sm:grid-cols-1 lg:grid-cols-4">
+                    <div className="col-span-3">
                         <DashboardLineChart />
                     </div>
-                    <div>
-                        <Expanses />
-                    </div>
+                    <Expanses />
+                </div>
+                <div className="grid grid-cols-3 gap-4 sm:grid-cols-1 lg:grid-cols-3">
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between">
+                            <CardTitle>Recent Activities</CardTitle>
+                            <MoreHorizontal className="text-muted-foreground" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="space-y-4">
+                                {recentActivities.map((activity, i) => (
+                                    <div key={i} className="flex items-center justify-between">
+                                        <div className="flex items-center gap-4">
+                                            <Avatar>
+                                                <img src={activity.icon} alt={activity.name} />
+                                               
+                                            </Avatar>
+                                            <div>
+                                                <p className="font-medium">{activity.name}</p>
+                                                <p className="text-sm text-muted-foreground">{activity.type}</p>
+                                            </div>
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="font-medium">{activity.amount}</p>
+                                            <p className="text-sm text-muted-foreground">{activity.time}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
         </div>
